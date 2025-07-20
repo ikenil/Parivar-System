@@ -7,6 +7,9 @@ This is a full-stack family management system built with React, Express, TypeScr
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Registration process: 3-step process (Personal Details → Family Members → Business Details)
+Business photo upload required for business owners
+Company name and designation fields for employees
 
 ## System Architecture
 
@@ -100,3 +103,18 @@ Preferred communication style: Simple, everyday language.
 - Environment-based configuration for different deployment stages
 
 The application follows a monorepo structure with shared types between client and server, ensuring type safety across the full stack. The architecture supports both development efficiency and production scalability.
+
+## Recent Changes
+
+**July 20, 2025:**
+- Successfully migrated project from Replit Agent to standard Replit environment
+- Enhanced login page with modern gradient design and tabbed interface
+- Implemented comprehensive 3-step member registration process:
+  - Step 1: Personal details (name, contact, family info, address)
+  - Step 2: Family member management (add/remove family members with details)
+  - Step 3: Business details (occupation, employment type, business photos for owners)
+- Improved dashboard with enhanced stats cards and modern styling
+- Updated navigation with better icons and responsive design
+- Fixed query client error handling to prevent unhandled rejections
+- Added file upload capability for business photos
+- Implemented proper form validation and step navigation
