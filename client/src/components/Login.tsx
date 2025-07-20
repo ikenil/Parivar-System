@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
@@ -39,7 +39,14 @@ export function Login() {
     familyBranch: "",
     
     // Family Members (Step 2)
-    familyMembers: [],
+    familyMembers: [] as Array<{
+      id: number;
+      name: string;
+      relation: string;
+      age: string;
+      occupation: string;
+      phone: string;
+    }>,
     
     // Business Details (Step 3)
     occupation: "",
@@ -65,7 +72,7 @@ export function Login() {
   });
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [activeTab, setActiveTab] = useState("login");
+
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -134,7 +141,14 @@ export function Login() {
         state: "",
         pincode: "",
         familyBranch: "",
-        familyMembers: [],
+        familyMembers: [] as Array<{
+          id: number;
+          name: string;
+          relation: string;
+          age: string;
+          occupation: string;
+          phone: string;
+        }>,
         occupation: "",
         employmentType: "",
         companyName: "",
@@ -247,56 +261,28 @@ export function Login() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-2xl space-y-8">
+    <div className="min-h-screen bg-gray-100 py-8 px-4">
+      <div className="max-w-4xl mx-auto space-y-8">
         {/* Logo/Title */}
         <div className="text-center space-y-2">
-          <div className="flex items-center justify-center space-x-2 mb-4">
-            <Users className="h-12 w-12 text-primary" />
+          <div className="flex items-center justify-center space-x-3 mb-6">
+            <Users className="h-12 w-12 text-blue-600" />
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                Bhikadiya Parivar
-              </h1>
+              <h1 className="text-4xl font-bold text-gray-900">Bhikadiya Parivar</h1>
               <p className="text-lg text-gray-600 font-medium">Family Management System</p>
             </div>
           </div>
         </div>
 
-        {/* Main Card with Tabs */}
-        <Card className="shadow-2xl border-0 bg-white/80 backdrop-blur-sm">
-          <CardHeader className="pb-4">
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-6">
-                <TabsTrigger value="login" className="flex items-center space-x-2">
-                  <LogIn className="h-4 w-4" />
-                  <span>Login</span>
-                </TabsTrigger>
-                <TabsTrigger value="register" className="flex items-center space-x-2">
-                  <UserPlus className="h-4 w-4" />
-                  <span>Member Registration</span>
-                </TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="login" className="mt-0">
-                <CardTitle className="text-center text-2xl font-semibold text-gray-800">
-                  Welcome Back
-                </CardTitle>
-                <p className="text-center text-gray-600 mt-2">Sign in to your account</p>
-              </TabsContent>
-
-              <TabsContent value="register" className="mt-0">
-                <CardTitle className="text-center text-2xl font-semibold text-gray-800">
-                  Join Our Family
-                </CardTitle>
-                <p className="text-center text-gray-600 mt-2">Register as a new member</p>
-              </TabsContent>
-            </Tabs>
+        {/* Login Card */}
+        <Card className="shadow-lg border border-gray-200 bg-white max-w-md mx-auto">
+          <CardHeader>
+            <CardTitle className="text-center text-2xl font-semibold text-gray-800">
+              Welcome Back
+            </CardTitle>
+            <p className="text-center text-gray-600 mt-2">Sign in to your account</p>
           </CardHeader>
-
           <CardContent>
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              {/* Login Form */}
-              <TabsContent value="login">
                 <form onSubmit={handleLogin} className="space-y-6">
                   <div>
                     <Label htmlFor="login-phone" className="text-sm font-medium text-gray-700">Phone Number</Label>
@@ -337,7 +323,7 @@ export function Login() {
                   </div>
                   <Button 
                     type="submit" 
-                    className="w-full h-12 text-base bg-gradient-to-r from-primary to-purple-600 hover:from-primary/90 hover:to-purple-600/90" 
+                    className="w-full h-12 text-base bg-blue-600 hover:bg-blue-700 text-white" 
                     disabled={loading}
                   >
                     {loading ? (
@@ -353,10 +339,69 @@ export function Login() {
                     )}
                   </Button>
                 </form>
-              </TabsContent>
+          </CardContent>
+        </Card>
 
-              {/* Registration Form with 3 Steps */}
-              <TabsContent value="register">
+        {/* Demo Credentials */}
+        <Card className="shadow-md border border-gray-200 bg-white max-w-md mx-auto">
+          <CardHeader>
+            <CardTitle className="text-base font-semibold text-gray-800">Demo Credentials</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {demoCredentials.map((cred, index) => (
+              <div key={index} className="p-4 bg-gray-50 rounded-lg border border-gray-100">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <p className="font-semibold text-sm text-gray-900">{cred.role}</p>
+                    <p className="text-sm text-gray-600">{cred.phone}</p>
+                    <p className="text-sm text-gray-600">Password: {cred.password}</p>
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
+                    onClick={() => {
+                      setLoginData({ phone: cred.phone, password: cred.password });
+                    }}
+                  >
+                    Use
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
+        {/* Link to Registration */}
+        <div className="text-center mt-8">
+          <p className="text-gray-600 mb-4">Don't have an account?</p>
+          <Button 
+            variant="outline" 
+            onClick={() => {
+              const element = document.getElementById('registration-section');
+              element?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
+          >
+            Register as New Member
+          </Button>
+        </div>
+
+        {/* Registration Section */}
+        <div id="registration-section" className="mt-16">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-2">New Member Registration</h2>
+            <p className="text-gray-600">Join our family by filling out the registration form below</p>
+          </div>
+
+          <Card className="shadow-lg border border-gray-200 bg-white">
+            <CardHeader>
+              <div className="flex items-center space-x-2">
+                <UserPlus className="h-6 w-6 text-blue-600" />
+                <CardTitle className="text-xl font-semibold text-gray-800">Member Registration</CardTitle>
+              </div>
+            </CardHeader>
+            <CardContent>
                 <div className="space-y-6">
                   {/* Progress Bar */}
                   <div className="space-y-2">
@@ -576,7 +621,7 @@ export function Login() {
                             type="button" 
                             onClick={nextStep}
                             disabled={!isStep1Valid()}
-                            className="px-8 py-2 bg-primary hover:bg-primary/90"
+                            className="px-8 py-2 bg-blue-600 hover:bg-blue-700 text-white"
                           >
                             Next Step
                             <ChevronRight className="ml-2 h-4 w-4" />
@@ -704,7 +749,7 @@ export function Login() {
                             <ChevronLeft className="mr-2 h-4 w-4" />
                             Previous
                           </Button>
-                          <Button type="button" onClick={nextStep} className="px-8 py-2 bg-primary hover:bg-primary/90">
+                          <Button type="button" onClick={nextStep} className="px-8 py-2 bg-blue-600 hover:bg-blue-700 text-white">
                             Next Step
                             <ChevronRight className="ml-2 h-4 w-4" />
                           </Button>
@@ -886,7 +931,7 @@ export function Login() {
                           <Button 
                             type="submit" 
                             disabled={loading || !registrationData.occupation || !registrationData.employmentType}
-                            className="px-8 py-2 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
+                            className="px-8 py-2 bg-green-600 hover:bg-green-700 text-white"
                           >
                             {loading ? (
                               <>
@@ -905,43 +950,9 @@ export function Login() {
                     )}
                   </form>
                 </div>
-              </TabsContent>
-
-            </Tabs>
-          </CardContent>
-        </Card>
-
-        {/* Demo Credentials - Only show on login tab */}
-        {activeTab === "login" && (
-          <Card className="shadow-lg border-0 bg-white/60 backdrop-blur-sm">
-            <CardHeader>
-              <CardTitle className="text-base font-semibold text-gray-800">Demo Credentials</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {demoCredentials.map((cred, index) => (
-                <div key={index} className="p-4 bg-white/80 rounded-lg border border-gray-100">
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <p className="font-semibold text-sm text-gray-900">{cred.role}</p>
-                      <p className="text-sm text-gray-600">{cred.phone}</p>
-                      <p className="text-sm text-gray-600">Password: {cred.password}</p>
-                    </div>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="border-primary text-primary hover:bg-primary hover:text-white"
-                      onClick={() => {
-                        setLoginData({ phone: cred.phone, password: cred.password });
-                      }}
-                    >
-                      Use
-                    </Button>
-                  </div>
-                </div>
-              ))}
             </CardContent>
           </Card>
-        )}
+        </div>
       </div>
     </div>
   );
