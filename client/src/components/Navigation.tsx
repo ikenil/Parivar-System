@@ -27,8 +27,14 @@ export function Navigation() {
     "super-admin": [
       { id: "dashboard", label: "Dashboard", icon: BarChart3, path: "/" },
       { id: "members", label: "Members", icon: Users, path: "/members" },
+      { id: "committee", label: "Committee", icon: Users, path: "/committee" },
       { id: "gallery", label: "Gallery", icon: Images, path: "/gallery" },
       { id: "students", label: "Students", icon: GraduationCap, path: "/students" },
+      { id: "donors", label: "Donors", icon: Users, path: "/donors" },
+      { id: "awards", label: "Awards", icon: GraduationCap, path: "/awards" },
+      { id: "abroad", label: "Abroad", icon: Users, path: "/abroad" },
+      { id: "pending", label: "Pending", icon: Users, path: "/pending" },
+      { id: "admins", label: "Admins", icon: Users, path: "/admins" },
       { id: "notifications", label: "Notifications", icon: Bell, path: "/notifications" },
     ],
     "admin": [

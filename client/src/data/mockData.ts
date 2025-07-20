@@ -1,4 +1,4 @@
-import type { Member, Notification, Student, GalleryEvent } from "@shared/schema";
+import type { Member, Notification, Student, GalleryEvent, CommitteeMember, Donor, User } from "@shared/schema";
 
 export const mockMembers: Member[] = [
   {
@@ -18,6 +18,8 @@ export const mockMembers: Member[] = [
     businessCategory: "Trading",
     companyName: "Bhikadiya Enterprises",
     status: "active",
+    isAbroad: false,
+    abroadCountry: null,
     createdAt: new Date("2024-01-15"),
   },
   {
@@ -37,6 +39,8 @@ export const mockMembers: Member[] = [
     businessCategory: "Education",
     companyName: "Gujarat College",
     status: "active",
+    isAbroad: false,
+    abroadCountry: null,
     createdAt: new Date("2024-02-10"),
   },
   {
@@ -56,7 +60,51 @@ export const mockMembers: Member[] = [
     businessCategory: "Technology",
     companyName: "TCS Limited",
     status: "pending",
+    isAbroad: false,
+    abroadCountry: null,
     createdAt: new Date("2024-03-05"),
+  },
+  {
+    id: 4,
+    firstName: "Ravi",
+    lastName: "Bhikadiya",
+    email: "ravi@email.com",
+    phone: "+91 98765 43213",
+    dateOfBirth: "1982-05-12",
+    gender: "Male",
+    fatherName: "Mohan Bhikadiya",
+    familyBranch: "Branch A",
+    address: "101 NRI Complex, Bopal",
+    city: "Ahmedabad",
+    state: "Gujarat",
+    occupation: "Business Owner",
+    businessCategory: "Technology",
+    companyName: "Global Tech Solutions",
+    status: "active",
+    isAbroad: true,
+    abroadCountry: "USA",
+    createdAt: new Date("2023-08-15"),
+  },
+  {
+    id: 5,
+    firstName: "Sneha",
+    lastName: "Bhikadiya",
+    email: "sneha@email.com",
+    phone: "+91 98765 43214",
+    dateOfBirth: "1995-09-28",
+    gender: "Female",
+    fatherName: "Vijay Bhikadiya",
+    familyBranch: "Branch D",
+    address: "202 Garden View, Maninagar",
+    city: "Ahmedabad",
+    state: "Gujarat",
+    occupation: "Professional",
+    businessCategory: "Healthcare",
+    companyName: "City Hospital",
+    status: "active",
+    isAbroad: true,
+    abroadCountry: "Canada",
+    createdAt: new Date("2023-11-20"),
   },
 ];
 
@@ -104,6 +152,8 @@ export const mockStudents: Student[] = [
     stream: "Science",
     year: "2024",
     achievement: "Secured admission in IIT Bombay for Engineering",
+    isAwardEligible: true,
+    awardType: "Academic Excellence",
     memberId: 2,
   },
   {
@@ -114,6 +164,8 @@ export const mockStudents: Student[] = [
     stream: "Computer Engineering",
     year: "2024",
     achievement: "Received job offer from Google with ₹50L package",
+    isAwardEligible: true,
+    awardType: "Professional Achievement",
     memberId: 1,
   },
   {
@@ -124,6 +176,8 @@ export const mockStudents: Student[] = [
     stream: "CBSE",
     year: "2024",
     achievement: "State topper in Mathematics with perfect score",
+    isAwardEligible: true,
+    awardType: "Academic Excellence",
     memberId: 3,
   },
   {
@@ -134,6 +188,8 @@ export const mockStudents: Student[] = [
     stream: "Finance",
     year: "2024",
     achievement: "Joined Goldman Sachs as Investment Analyst",
+    isAwardEligible: false,
+    awardType: null,
     memberId: 2,
   },
   {
@@ -144,6 +200,8 @@ export const mockStudents: Student[] = [
     stream: "Medicine",
     year: "2024",
     achievement: "Completed PhD in Cardiology from AIIMS Delhi",
+    isAwardEligible: true,
+    awardType: "Research Excellence",
     memberId: 1,
   },
   {
@@ -154,7 +212,124 @@ export const mockStudents: Student[] = [
     stream: "Mechanical Engineering",
     year: "2024",
     achievement: "Started own manufacturing business",
+    isAwardEligible: false,
+    awardType: null,
     memberId: 3,
+  },
+];
+
+// Committee Members Mock Data
+export const mockCommitteeMembers: CommitteeMember[] = [
+  {
+    id: 1,
+    memberId: 1,
+    position: "President",
+    department: "Executive",
+    startDate: "2024-01-01",
+    endDate: null,
+    isActive: true,
+    responsibilities: "Overall leadership and strategic planning",
+  },
+  {
+    id: 2,
+    memberId: 2,
+    position: "Vice President",
+    department: "Executive",
+    startDate: "2024-01-01",
+    endDate: null,
+    isActive: true,
+    responsibilities: "Support president and handle member relations",
+  },
+  {
+    id: 3,
+    memberId: 3,
+    position: "Treasurer",
+    department: "Finance",
+    startDate: "2024-01-01",
+    endDate: null,
+    isActive: true,
+    responsibilities: "Financial management and budgeting",
+  },
+  {
+    id: 4,
+    memberId: 4,
+    position: "Event Coordinator",
+    department: "Events",
+    startDate: "2023-06-01",
+    endDate: null,
+    isActive: true,
+    responsibilities: "Plan and organize family events and gatherings",
+  },
+];
+
+// Donors Mock Data
+export const mockDonors: Donor[] = [
+  {
+    id: 1,
+    name: "Rajesh Bhikadiya",
+    phone: "+91 98765 43210",
+    email: "rajesh@email.com",
+    amount: 50000,
+    purpose: "Annual Family Gathering",
+    donationDate: "2024-10-15",
+    paymentMethod: "UPI",
+    memberId: 1,
+  },
+  {
+    id: 2,
+    name: "Priya Bhikadiya",
+    phone: "+91 98765 43211",
+    email: "priya@email.com",
+    amount: 25000,
+    purpose: "Student Achievement Awards",
+    donationDate: "2024-09-20",
+    paymentMethod: "Bank Transfer",
+    memberId: 2,
+  },
+  {
+    id: 3,
+    name: "Anonymous Donor",
+    phone: "+91 98765 43999",
+    email: null,
+    amount: 75000,
+    purpose: "Medical Emergency Fund",
+    donationDate: "2024-08-10",
+    paymentMethod: "Cash",
+    memberId: null,
+  },
+];
+
+// Users Mock Data for login
+export const mockUsers: User[] = [
+  {
+    id: 1,
+    phone: "+91 98765 43210",
+    password: "123456",
+    role: "super-admin",
+    firstName: "Rajesh",
+    lastName: "Bhikadiya",
+    isActive: true,
+    createdAt: new Date("2024-01-01"),
+  },
+  {
+    id: 2,
+    phone: "+91 98765 43211",
+    password: "123456",
+    role: "admin",
+    firstName: "Priya",
+    lastName: "Bhikadiya",
+    isActive: true,
+    createdAt: new Date("2024-01-01"),
+  },
+  {
+    id: 3,
+    phone: "+91 98765 43212",
+    password: "123456",
+    role: "member",
+    firstName: "Amit",
+    lastName: "Bhikadiya",
+    isActive: true,
+    createdAt: new Date("2024-01-01"),
   },
 ];
 

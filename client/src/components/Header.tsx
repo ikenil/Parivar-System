@@ -1,41 +1,51 @@
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Bell, Users, User, Globe } from "lucide-react";
+import { Bell, Users, User, Globe, LogOut } from "lucide-react";
 import { useAppContext } from "@/contexts/AppContext";
 import { useTranslation } from "@/hooks/useTranslation";
 
 export function Header() {
-  const { userRole, setUserRole, language, setLanguage } = useAppContext();
+  const { user, userRole, language, setLanguage, logout } = useAppContext();
   const { t } = useTranslation();
-
-  const handleRoleChange = (value: string) => {
-    setUserRole(value as any);
-  };
 
   const toggleLanguage = () => {
     setLanguage(language === "en" ? "gu" : "en");
   };
 
+  const getRoleBadgeColor = (role: string) => {
+    switch (role) {
+      case "super-admin":
+        return "bg-red-100 text-red-800";
+      case "admin":
+        return "bg-blue-100 text-blue-800";
+      default:
+        return "bg-gray-100 text-gray-800";
+    }
+  };
+
+  const getRoleDisplayName = (role: string) => {
+    switch (role) {
+      case "super-admin":
+        return "Super Admin";
+      case "admin":
+        return "Admin";
+      default:
+        return "Member";
+    }
+  };
+
   return (
     <>
-      {/* Role Switcher & Language Toggle */}
+      {/* User Info & Language Toggle */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-2 text-sm">
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
                 <User className="h-4 w-4 text-gray-500" />
-                <span className="text-gray-600">{t("Role:")}</span>
-                <Select value={userRole} onValueChange={handleRoleChange}>
-                  <SelectTrigger className="w-32 h-8 text-sm">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="super-admin">Super Admin</SelectItem>
-                    <SelectItem value="admin">Admin</SelectItem>
-                    <SelectItem value="member">Member</SelectItem>
-                  </SelectContent>
-                </Select>
+                <span className="text-gray-600">Welcome, {user?.firstName} {user?.lastName}</span>
+                <span className={`px-2 py-1 rounded-full text-xs font-medium ${getRoleBadgeColor(userRole)}`}>
+                  {getRoleDisplayName(userRole)}
+                </span>
               </div>
             </div>
             <div className="flex items-center space-x-4">
@@ -50,6 +60,15 @@ export function Header() {
                   {language === "en" ? "EN | ગુ" : "ગુ | EN"}
                 </Button>
               </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={logout}
+                className="h-8 px-3 text-sm flex items-center space-x-1"
+              >
+                <LogOut className="h-3 w-3" />
+                <span>Logout</span>
+              </Button>
             </div>
           </div>
         </div>
