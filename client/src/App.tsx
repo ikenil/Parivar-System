@@ -5,7 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AppProvider, useAppContext } from "@/contexts/AppContext";
 import { Layout } from "@/components/Layout";
-import { Login } from "@/components/Login";
+import LoginPage from "@/pages/LoginPage";
+import RegisterPage from "@/pages/RegisterPage";
 import Dashboard from "@/pages/Dashboard";
 import Members from "@/pages/Members";
 import Gallery from "@/pages/Gallery";
@@ -46,7 +47,12 @@ function Router() {
   const { user } = useAppContext();
   
   if (!user) {
-    return <Login />;
+    return (
+      <Switch>
+        <Route path="/register" component={RegisterPage} />
+        <Route component={LoginPage} />
+      </Switch>
+    );
   }
   
   return <AuthenticatedApp />;

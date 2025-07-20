@@ -9,7 +9,7 @@ import { mockUsers } from "@/data/mockData";
 import { useLocation } from "wouter";
 import { Loader2, Phone, Lock, Eye, EyeOff, Users, LogIn, UserPlus } from "lucide-react";
 
-export function Login() {
+export default function LoginPage() {
   const { toast } = useToast();
   const { setUser } = useAppContext();
   const [, setLocation] = useLocation();
@@ -188,7 +188,7 @@ export function Login() {
           <p className="text-gray-600 mb-4">Don't have an account?</p>
           <Button 
             variant="outline" 
-            onClick={() => setLocation("/registration")}
+            onClick={() => setLocation("/register")}
             className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
           >
             <UserPlus className="mr-2 h-4 w-4" />
